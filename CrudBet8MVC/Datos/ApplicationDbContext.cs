@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CrudBet8MVC.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CrudBet8MVC.Datos
 {
@@ -9,7 +10,7 @@ namespace CrudBet8MVC.Datos
         }
 
         //Agregar los modelos aqui(cada modelo corresponde a una tabla en la BD)
-
+        public DbSet<Contacto> Contacto { get; set; }
         
     }
 }
