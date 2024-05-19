@@ -106,6 +106,44 @@ namespace CrudBet8MVC.Controllers
         }
 
 
+        [HttpGet]
+        public IActionResult Borrar(int id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            //Buscamos el contacto por el id
+            var contacto = _context.Contacto.Find(id);
+
+            if (contacto == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(contacto);
+        }
+
+        [HttpPost, ActionName("Borrar")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> BorrarContacto(int? id)
+        {
+           var contacto = await _context.Contacto.FindAsync(id);
+            if(contacto == null)
+            {
+                //Lomanda a la misma vista de borrar
+                return View();
+            }
+            _context.Contacto.Remove(contacto);
+            //Ejecutamos el borrado de la base de datos
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+
         public IActionResult Privacy()
         {
             return View();
