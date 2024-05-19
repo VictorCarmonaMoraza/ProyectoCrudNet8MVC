@@ -15,9 +15,34 @@ namespace CrudBet8MVC.Controllers
            _context = context;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Contacto.ToListAsync());
+        }
+
+        /// <summary>
+        /// Metodo para crear un nuevo contacto
+        /// Solo muestra el formulario
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult Crear()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Crear(Contacto contacto)
+        {
+            //Validacion de los datos
+            if(ModelState.IsValid)
+            {
+                
+                
+            }
+            return View();
         }
 
         public IActionResult Privacy()
