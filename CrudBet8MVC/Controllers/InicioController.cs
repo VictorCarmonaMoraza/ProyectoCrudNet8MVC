@@ -49,6 +49,42 @@ namespace CrudBet8MVC.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Editar(int id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            //Buscamos el contacto por el id
+            var contacto =_context.Contacto.Find(id);
+
+            if (contacto == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(contacto);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Editar(Contacto contacto)
+        {
+            //Validacion de los datos
+            if (ModelState.IsValid)
+            {
+                _context.Update(contacto);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
+
+
         public IActionResult Privacy()
         {
             return View();
