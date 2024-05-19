@@ -41,6 +41,7 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
+                                    <tr>
                                 <td>@Html.DisplayFor(m => item.Id)</td>
                                 <td>@Html.DisplayFor(m => item.Nombre)</td>
                                 <td>@Html.DisplayFor(m => item.Telefono)</td>
@@ -58,6 +59,7 @@
                                         <i class="fa-solid fa-trash-can p-1" aria-hidden="true"></i>Eliminar
                                     </a>
                                 </td>
+                                    </tr>
 
                                 }
                             </tbody>

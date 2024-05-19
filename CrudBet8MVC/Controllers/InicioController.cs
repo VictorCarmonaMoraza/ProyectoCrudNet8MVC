@@ -34,13 +34,17 @@ namespace CrudBet8MVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Crear(Contacto contacto)
+        public async Task<IActionResult> Crear(Contacto contacto)
         {
             //Validacion de los datos
             if(ModelState.IsValid)
             {
+                //Agregar la fecha de creacion
+                contacto.FechaCreacion = DateTime.Now;
                 
-                
+                _context.Contacto.Add(contacto);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
             return View();
         }
