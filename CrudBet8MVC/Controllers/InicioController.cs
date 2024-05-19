@@ -84,6 +84,27 @@ namespace CrudBet8MVC.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Detalle(int id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            //Buscamos el contacto por el id
+            var contacto = _context.Contacto.Find(id);
+
+            if (contacto == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(contacto);
+        }
+
 
         public IActionResult Privacy()
         {
